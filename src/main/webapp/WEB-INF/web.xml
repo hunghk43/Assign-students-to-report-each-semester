@@ -1,0 +1,60 @@
+<web-app xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns="https://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://xmlns.jcp.org/xml/ns/javaee https://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+<welcome-file-list>
+<welcome-file>index.html</welcome-file>
+<welcome-file>index.jsp</welcome-file>
+<welcome-file>index.htm</welcome-file>
+<welcome-file>default.html</welcome-file>
+<welcome-file>default.jsp</welcome-file>
+<welcome-file>default.htm</welcome-file>
+</welcome-file-list>
+<servlet>
+<servlet-name>StudentController</servlet-name>
+<servlet-class>controller.StudentController</servlet-class>
+</servlet>
+<!--  <servlet-mapping>
+        <servlet-name>StudentController</servlet-name>
+        <url-pattern>/Student</url-pattern>
+    </servlet-mapping>  -->
+<!--  Chỉ định cấu hình servlet cho Lecturer  -->
+<servlet>
+<servlet-name>LecturerController</servlet-name>
+<servlet-class>controller.LecturerController</servlet-class>
+</servlet>
+<!--   <servlet-mapping>
+        <servlet-name>LecturerController</servlet-name>
+        <url-pattern>/Lecturer</url-pattern>
+    </servlet-mapping>  -->
+<!--  Chỉ định cấu hình servlet cho Committee  -->
+<servlet>
+<servlet-name>CommitteeController</servlet-name>
+<servlet-class>controller.CommitteeController</servlet-class>
+</servlet>
+<!--  <servlet-mapping>
+        <servlet-name>CommitteeController</servlet-name>
+        <url-pattern>/Committee</url-pattern>
+    </servlet-mapping>  -->
+<!--  Chỉ định cấu hình servlet cho Lecturer Assignment  -->
+<servlet>
+<servlet-name>LecturerAssignmentController</servlet-name>
+<servlet-class>Controller.LecturerAssignmentController</servlet-class>
+</servlet>
+<!--     <servlet-mapping>
+        <servlet-name>LecturerAssignmentController</servlet-name>
+        <url-pattern>/LecturerAssignments</url-pattern>
+    </servlet-mapping>  -->
+<!--  Chỉ định cấu hình servlet cho Report  -->
+<servlet>
+<servlet-name>ReportController</servlet-name>
+<servlet-class>controller.ReportController</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>AssignmentController</servlet-name>
+<servlet-class>controller.AssignmentController</servlet-class>
+</servlet>
+<!--   <servlet-mapping>
+        <servlet-name>ReportController</servlet-name>
+        <url-pattern>/Report</url-pattern>
+    </servlet-mapping>  -->
+<!--  Cấu hình một số thông tin cơ bản về ứng dụng  -->
+<display-name>WebApp</display-name>
+</web-app>
