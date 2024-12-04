@@ -6,7 +6,14 @@ public class Student {
     private String major;
     private String studentClass;
 
-    public Student(int i, String string, int j, String string2, String string3) {}
+    public Student(int studentId, String fullName, int year, String major, String studentClass) {
+        this.studentId = studentId;
+        this.fullName = fullName;
+        this.year = year;
+        this.major = major;
+        this.studentClass = studentClass;
+    }
+
 
     // Getter và Setter đầy đủ
     public int getStudentId() {
