@@ -7,12 +7,12 @@ public class Student {
     private String studentClass;
 
     public Student(int studentId, String fullName, int year, String major, String studentClass) {
-        this.studentId = studentId;
-        this.fullName = fullName;
-        this.year = year;
-        this.major = major;
-        this.studentClass = studentClass;
-    }
+    this.studentId = studentId;
+    this.fullName = fullName;
+    this.year = year;
+    this.major = major;
+    this.studentClass = studentClass;
+}
 
 
     // Getter và Setter đầy đủ

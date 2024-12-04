@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Thêm Sinh viên</h1>
-        <form action="addStudent" method="post" class="mt-4">
+        <form action="students" method="post" class="mt-4">
             <div class="mb-3">
                 <label for="fullName" class="form-label">Họ tên</label>
                 <input type="text" class="form-control" id="fullName" name="fullName" required>

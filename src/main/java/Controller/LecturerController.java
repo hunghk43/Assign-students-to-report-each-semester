@@ -1,8 +1,8 @@
 package Controller;
 
-import dao.*;
-import model.*;
-import util.*;
+import dao.LecturerDAO;
+import model.Lecturer;
+import util.JsonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,17 +51,17 @@ public class LecturerController extends HttpServlet {
         lecturerDAO.deleteLecturer(lecturerId);
         response.setStatus(HttpServletResponse.SC_NO_CONTENT);
     }
+
+    // For redirecting from the JSP update page after successful update
     protected void updateLecturer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int lecturerId = Integer.parseInt(request.getParameter("lecturerId"));
         String fullName = request.getParameter("fullName");
         String department = request.getParameter("department");
 
         Lecturer lecturer = new Lecturer(lecturerId, fullName, department);
-        LecturerDAO lecturerDAO = new LecturerDAO();
         lecturerDAO.updateLecturer(lecturer);
 
-        // Redirect về danh sách giảng viên
+        // Redirect to the list of lecturers after updating
         response.sendRedirect("lecturers.jsp");
     }
-
 }

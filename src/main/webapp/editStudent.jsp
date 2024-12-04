@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="dao.StudentDAO" %>
 <%@ page import="model.Student" %>
 <%
@@ -20,7 +19,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Chỉnh sửa Sinh viên</h1>
-        <form action="updateStudent" method="post" class="mt-4">
+        <form action="students" method="post" class="mt-4">
             <input type="hidden" name="studentId" value="<%= student.getStudentId() %>">
             <div class="mb-3">
                 <label for="fullName" class="form-label">Họ tên</label>
@@ -44,4 +43,3 @@
     </div>
 </body>
 </html>
-    

@@ -4,7 +4,7 @@
 <%@ page import="dao.LecturerDAO" %>
 <%@ page import="model.Lecturer" %>
 <%
-    // Khởi tạo DAO và lấy danh sách giảng viên
+    // Initialize DAO and retrieve list of lecturers
     LecturerDAO lecturerDAO = new LecturerDAO();
     List<Lecturer> lecturers = lecturerDAO.getAllLecturers();
 %>
@@ -12,19 +12,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý Giảng viên</title>
+    <title>Manage Lecturers</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Quản lý Giảng viên</h1>
+        <h1 class="text-center">Manage Lecturers</h1>
         <table class="table table-bordered mt-4">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Họ tên</th>
-                    <th>Bộ môn</th>
-                    <th>Hành động</th>
+                    <th>Full Name</th>
+                    <th>Department</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,14 +34,14 @@
                     <td><%= lecturer.getFullName() %></td>
                     <td><%= lecturer.getDepartment() %></td>
                     <td>
-                        <a href="editLecturer.jsp?id=<%= lecturer.getLecturerId() %>" class="btn btn-warning btn-sm">Sửa</a>
-                        <a href="deleteLecturer?id=<%= lecturer.getLecturerId() %>" class="btn btn-danger btn-sm">Xóa</a>
+                        <a href="editLecturer.jsp?id=<%= lecturer.getLecturerId() %>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="deleteLecturer?id=<%= lecturer.getLecturerId() %>" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
                 <% } %>
             </tbody>
         </table>
-        <a href="addLecturer.jsp" class="btn btn-success">Thêm Giảng viên</a>
+        <a href="addLecturer.jsp" class="btn btn-success">Add Lecturer</a>
     </div>
 </body>
 </html>
