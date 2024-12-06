@@ -17,6 +17,10 @@
     </servlet-mapping>  -->
 <!--  Chỉ định cấu hình servlet cho Lecturer  -->
 <servlet>
+    	<servlet-name>LoginServlet</servlet-name>
+    	<servlet-class>util.LoginServlet</servlet-class>
+	</servlet>
+<servlet>
 <servlet-name>LecturerController</servlet-name>
 <servlet-class>controller.LecturerController</servlet-class>
 </servlet>
