@@ -37,8 +37,8 @@
                     <td><%= student.getMajor() %></td>
                     <td><%= student.getStudentClass() %></td>
                     <td>
-                        <a href="editStudent.jsp?id=<%= student.getStudentId() %>" class="btn btn-warning btn-sm">Sửa</a>
-                        <a href="deleteStudent?id=<%= student.getStudentId() %>" class="btn btn-danger btn-sm">Xóa</a>
+                        <a href="students?action=edit&id=<%= student.getStudentId() %>" class="btn btn-warning btn-sm">Sửa</a>
+                       <a href="#" onclick="confirmDelete(<%= student.getStudentId() %>)" class="btn btn-danger btn-sm">Xóa</a>
                     </td>
                 </tr>
                 <% } %>
@@ -46,5 +46,12 @@
         </table>
         <a href="addStudent.jsp" class="btn btn-success">Thêm Sinh viên</a>
     </div>
+    <script>
+    function confirmDelete(studentId) {
+        if (confirm("Bạn có chắc chắn muốn xóa sinh viên này?")) {
+            window.location.href = "students?action=delete&id=" + studentId;
+        }
+    }
+</script>
 </body>
 </html>

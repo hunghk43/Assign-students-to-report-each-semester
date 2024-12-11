@@ -19,55 +19,41 @@ public class StudentController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String studentId = request.getParameter("id");
-        if (studentId != null) {
-            Student student = studentDAO.getStudentById(Integer.parseInt(studentId));
-            // Sử dụng phương thức writeJsonResponse hoặc thay đổi để dùng form truyền thống
-        } else {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        if ("delete".equals(action)) {
+            int studentId = Integer.parseInt(request.getParameter("id"));
+            studentDAO.deleteStudent(studentId);
+            response.sendRedirect("students");
+        } else if ("edit".equals(action)) {
+            int studentId = Integer.parseInt(request.getParameter("id"));
+            Student student = studentDAO.getStudentById(studentId);
+            request.setAttribute("student", student);
+            request.getRequestDispatcher("editStudent.jsp").forward(request, response);
+        } else { 
             List<Student> students = studentDAO.getAllStudents();
-            // Sử dụng phương thức writeJsonResponse hoặc thay đổi để dùng form truyền thống
+            request.setAttribute("students", students);
+            request.getRequestDispatcher("students.jsp").forward(request, response);
         }
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Đọc dữ liệu từ form truyền thống thay vì JSON
+        String studentId = request.getParameter("studentId");
         String fullName = request.getParameter("fullName");
         int year = Integer.parseInt(request.getParameter("year"));
         String major = request.getParameter("major");
         String studentClass = request.getParameter("className");
 
-        Student student = new Student(0, fullName, year, major, studentClass); // ID sẽ được auto-generated
-        studentDAO.addStudent(student);
-        response.sendRedirect("students.jsp"); // Điều hướng về trang danh sách sinh viên
-    }
+        Student student = new Student(studentId == null ? 0 : Integer.parseInt(studentId), fullName, year, major, studentClass);
+        if (studentId == null || studentId.isEmpty()) {
+            // Thêm mới
+            studentDAO.addStudent(student);
+        } else {
+            // Cập nhật
+            studentDAO.updateStudent(student);
+        }
 
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Đọc dữ liệu từ form truyền thống
-        int studentId = Integer.parseInt(request.getParameter("studentId"));
-        String fullName = request.getParameter("fullName");
-        int year = Integer.parseInt(request.getParameter("year"));
-        String major = request.getParameter("major");
-        String studentClass = request.getParameter("className");
-
-        // Tạo đối tượng sinh viên mới với ID đã có
-        Student student = new Student(studentId, fullName, year, major, studentClass);
-
-        // Cập nhật sinh viên trong cơ sở dữ liệu
-        studentDAO.updateStudent(student);
-
-        // Điều hướng lại đến trang sinh viên
-        response.sendRedirect("students.jsp"); // Hoặc bạn có thể truyền thêm tham số để xác nhận
-    }
-
-   
-
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int studentId = Integer.parseInt(request.getParameter("id"));
-        studentDAO.deleteStudent(studentId);
-        response.sendRedirect("students.jsp"); // Điều hướng về trang danh sách sinh viên
+        response.sendRedirect("students"); // Redirect để doGet được gọi lại
     }
 }

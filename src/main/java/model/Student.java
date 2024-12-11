@@ -4,14 +4,14 @@ public class Student {
     private String fullName;
     private int year;
     private String major;
-    private String studentClass;
+    private String StudentClass;
 
     public Student(int studentId, String fullName, int year, String major, String studentClass) {
     this.studentId = studentId;
     this.fullName = fullName;
     this.year = year;
     this.major = major;
-    this.studentClass = studentClass;
+    this.StudentClass = studentClass;
 }
 
 
@@ -49,10 +49,10 @@ public class Student {
     }
 
     public String getStudentClass() {
-        return studentClass;
+        return StudentClass;
     }
 
     public void setStudentClass(String studentClass) {
-        this.studentClass = studentClass;
+        this.StudentClass = studentClass;
     }
 }

@@ -56,13 +56,13 @@ public class StudentDAO {
 
     // Thêm mới sinh viên
     public void addStudent(Student student) {
-        String query = "INSERT INTO Students (full_name, year, major, StudentClass) VALUES (?, ?, ?, ?)";  // Đổi cột 'class' thành 'StudentClass'
+        String query = "INSERT INTO Students (full_name, year, major, StudentClass) VALUES (?, ?, ?, ?)";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, student.getFullName());
             statement.setInt(2, student.getYear());
             statement.setString(3, student.getMajor());
-            statement.setString(4, student.getStudentClass());  // Gọi phương thức getStudentClass()
+            statement.setString(4, student.getStudentClass());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
