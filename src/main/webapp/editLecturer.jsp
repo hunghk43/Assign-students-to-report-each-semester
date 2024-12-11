@@ -3,10 +3,7 @@
 <%@ page import="dao.LecturerDAO" %>
 <%@ page import="model.Lecturer" %>
 <%
-    // Get lecturer ID from request
     int lecturerId = Integer.parseInt(request.getParameter("id"));
-
-    // Initialize DAO and retrieve lecturer information
     LecturerDAO lecturerDAO = new LecturerDAO();
     Lecturer lecturer = lecturerDAO.getLecturerById(lecturerId);
 %>
@@ -20,7 +17,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Edit Lecturer</h1>
-        <form action="updateLecturer" method="post" class="mt-4">
+        <form action="lecturers" method="post" class="mt-4">
             <input type="hidden" name="lecturerId" value="<%= lecturer.getLecturerId() %>">
             <div class="mb-3">
                 <label for="fullName" class="form-label">Full Name</label>

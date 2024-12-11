@@ -4,7 +4,6 @@
 <%@ page import="dao.LecturerDAO" %>
 <%@ page import="model.Lecturer" %>
 <%
-    // Initialize DAO and retrieve list of lecturers
     LecturerDAO lecturerDAO = new LecturerDAO();
     List<Lecturer> lecturers = lecturerDAO.getAllLecturers();
 %>
@@ -14,6 +13,13 @@
     <meta charset="UTF-8">
     <title>Manage Lecturers</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script>
+        function confirmDelete(lecturerId) {
+            if (confirm("Bạn có chắc chắn muốn xóa giảng viên này?")) {
+                window.location.href = "lecturers?action=delete&id=" + lecturerId;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container mt-5">
@@ -34,8 +40,8 @@
                     <td><%= lecturer.getFullName() %></td>
                     <td><%= lecturer.getDepartment() %></td>
                     <td>
-                        <a href="editLecturer.jsp?id=<%= lecturer.getLecturerId() %>" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="deleteLecturer?id=<%= lecturer.getLecturerId() %>" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="lecturers?action=edit&id=<%= lecturer.getLecturerId() %>" class="btn btn-warning btn-sm">Edit</a>
+                         <a href="#" onclick="confirmDelete(<%= lecturer.getLecturerId()%>)" class="btn btn-danger btn-sm">Xóa</a>
                     </td>
                 </tr>
                 <% } %>

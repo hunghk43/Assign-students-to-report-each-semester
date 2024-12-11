@@ -9,8 +9,8 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Add Lecturer</h1>
-        <form action="addLecturer" method="post" class="mt-4">
+        <h1 class="text-center">Thêm giảng viên</h1>
+        <form action="lecturers" method="post" class="mt-4">
             <div class="mb-3">
                 <label for="fullName" class="form-label">Full Name</label>
                 <input type="text" class="form-control" id="fullName" name="fullName" required>
@@ -19,8 +19,8 @@
                 <label for="department" class="form-label">Department</label>
                 <input type="text" class="form-control" id="department" name="department" required>
             </div>
-            <button type="submit" class="btn btn-primary">Add</button>
-            <a href="lecturers.jsp" class="btn btn-secondary">Back</a>
+            <button type="submit" class="btn btn-primary">Thêm </button>
+            <a href="lecturers.jsp" class="btn btn-secondary">Quay lại</a>
         </form>
     </div>
 </body>

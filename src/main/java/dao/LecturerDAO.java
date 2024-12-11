@@ -11,10 +11,11 @@ public class LecturerDAO {
 
     public List<Lecturer> getAllLecturers() {
         List<Lecturer> lecturers = new ArrayList<>();
-        String query = "SELECT * FROM Lecturers";
+        String query = "SELECT lecturer_id, full_name, department FROM Lecturers";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
+            
             while (resultSet.next()) {
                 lecturers.add(new Lecturer(
                         resultSet.getInt("lecturer_id"),
@@ -29,9 +30,10 @@ public class LecturerDAO {
     }
 
     public Lecturer getLecturerById(int lecturerId) {
-        String query = "SELECT * FROM Lecturers WHERE lecturer_id = ?";
+        String query = "SELECT lecturer_id, full_name, department FROM Lecturers WHERE lecturer_id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
+         
             statement.setInt(1, lecturerId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
@@ -51,10 +53,16 @@ public class LecturerDAO {
     public void addLecturer(Lecturer lecturer) {
         String query = "INSERT INTO Lecturers (full_name, department) VALUES (?, ?)";
         try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+             
             statement.setString(1, lecturer.getFullName());
             statement.setString(2, lecturer.getDepartment());
             statement.executeUpdate();
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    lecturer.setLecturerId(generatedKeys.getInt(1));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,6 +72,7 @@ public class LecturerDAO {
         String query = "UPDATE Lecturers SET full_name = ?, department = ? WHERE lecturer_id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
+        
             statement.setString(1, lecturer.getFullName());
             statement.setString(2, lecturer.getDepartment());
             statement.setInt(3, lecturer.getLecturerId());

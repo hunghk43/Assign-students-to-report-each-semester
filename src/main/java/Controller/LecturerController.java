@@ -2,7 +2,6 @@ package Controller;
 
 import dao.LecturerDAO;
 import model.Lecturer;
-import util.JsonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,48 +19,44 @@ public class LecturerController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String lecturerId = request.getParameter("id");
-        if (lecturerId != null) {
-            Lecturer lecturer = lecturerDAO.getLecturerById(Integer.parseInt(lecturerId));
-            JsonUtil.writeJsonResponse(response, lecturer);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        if ("delete".equals(action)) {
+            int lecturerId = Integer.parseInt(request.getParameter("id"));
+            lecturerDAO.deleteLecturer(lecturerId);
+            response.sendRedirect("lecturers");
+        } else if ("edit".equals(action)) {
+            int lecturerId = Integer.parseInt(request.getParameter("id"));
+            Lecturer lecturer = lecturerDAO.getLecturerById(lecturerId);
+            request.setAttribute("lecturer", lecturer);
+            request.getRequestDispatcher("editLecturer.jsp").forward(request, response);
         } else {
             List<Lecturer> lecturers = lecturerDAO.getAllLecturers();
-            JsonUtil.writeJsonResponse(response, lecturers);
+            request.setAttribute("lecturers", lecturers);
+            request.getRequestDispatcher("lecturers.jsp").forward(request, response);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Lecturer lecturer = JsonUtil.readJsonRequest(request, Lecturer.class);
-        lecturerDAO.addLecturer(lecturer);
-        response.setStatus(HttpServletResponse.SC_CREATED);
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Lecturer lecturer = JsonUtil.readJsonRequest(request, Lecturer.class);
-        lecturerDAO.updateLecturer(lecturer);
-        response.setStatus(HttpServletResponse.SC_OK);
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int lecturerId = Integer.parseInt(request.getParameter("id"));
-        lecturerDAO.deleteLecturer(lecturerId);
-        response.setStatus(HttpServletResponse.SC_NO_CONTENT);
-    }
-
-    // For redirecting from the JSP update page after successful update
-    protected void updateLecturer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int lecturerId = Integer.parseInt(request.getParameter("lecturerId"));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         request.setCharacterEncoding("UTF-8");
+        String lecturerIdParam = request.getParameter("lecturerId");
         String fullName = request.getParameter("fullName");
         String department = request.getParameter("department");
 
-        Lecturer lecturer = new Lecturer(lecturerId, fullName, department);
-        lecturerDAO.updateLecturer(lecturer);
+        // Check if lecturerId is present and not empty to decide whether to update or add
+        if (lecturerIdParam != null && !lecturerIdParam.isEmpty()) {
+            // Update existing lecturer
+            int lecturerId = Integer.parseInt(lecturerIdParam);
+            Lecturer lecturer = new Lecturer(lecturerId, fullName, department);
+            lecturerDAO.updateLecturer(lecturer);
+        } else {
+            // Add new lecturer
+            Lecturer lecturer = new Lecturer(0, fullName, department); // Assuming 0 or any non-valid ID for new entries
+            lecturerDAO.addLecturer(lecturer);
+        }
 
-        // Redirect to the list of lecturers after updating
-        response.sendRedirect("lecturers.jsp");
+        response.sendRedirect("lecturers");
     }
 }
