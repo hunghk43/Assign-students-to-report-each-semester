@@ -51,10 +51,17 @@ public class LecturerAssignmentDAO {
     public void addAssignment(LecturerAssignment assignment) {
         String query = "INSERT INTO Lecturer_Assignments (lecturer_id, committee_id) VALUES (?, ?)";
         try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, assignment.getLecturerId());
             statement.setInt(2, assignment.getCommitteeId());
             statement.executeUpdate();
+
+            // Lấy assignment_id tự động tạo
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    assignment.setAssignmentId(generatedKeys.getInt(1));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

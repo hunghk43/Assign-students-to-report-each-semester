@@ -27,7 +27,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Chỉnh sửa Báo cáo Sinh viên</h1>
-        <form action="updateReport" method="post" class="mt-4">
+        <form action="reports" method="post" class="mt-4">
             <input type="hidden" name="reportId" value="<%= report.getReportId() %>">
             <div class="mb-3">
                 <label for="studentId" class="form-label">Sinh viên</label>
@@ -57,7 +57,7 @@
             </div>
             <div class="mb-3">
                 <label for="submissionDate" class="form-label">Ngày nộp</label>
-                <input type="date" id="submissionDate" name="submissionDate" class="form-control" value="<%= report.getSubmissionDate() %>" required>
+                <input type="date" id="submissionDate" name="submissionDate" class="form-control" value="<%= new java.sql.Date(report.getSubmissionDate().getTime()) %>" required>
             </div>
             <button type="submit" class="btn btn-primary">Cập nhật Báo cáo</button>
             <a href="reports.jsp" class="btn btn-secondary">Quay lại</a>

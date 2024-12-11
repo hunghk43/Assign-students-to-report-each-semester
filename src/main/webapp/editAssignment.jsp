@@ -28,7 +28,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Chỉnh sửa Phân công Giảng viên</h1>
-        <form action="updateAssignment" method="post">
+        <form action="assignments" method="post">
             <div class="mb-3">
                 <label for="lecturer" class="form-label">Giảng viên</label>
                 <select name="lecturerId" class="form-control">
@@ -53,6 +53,7 @@
             </div>
             <input type="hidden" name="assignmentId" value="<%= assignment.getAssignmentId() %>">
             <button type="submit" class="btn btn-primary">Cập nhật</button>
+             <a href="assignments.jsp" class="btn btn-secondary">Hủy</a>
         </form>
     </div>
 </body>

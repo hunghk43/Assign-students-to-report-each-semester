@@ -55,12 +55,19 @@ public class ReportDAO {
     public void addReport(Report report) {
         String query = "INSERT INTO Reports (student_id, committee_id, report_topic, submission_date) VALUES (?, ?, ?, ?)";
         try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, report.getStudentId());
             statement.setInt(2, report.getCommitteeId());
             statement.setString(3, report.getReportTopic());
-            statement.setDate(4, new java.sql.Date(report.getSubmissionDate().getTime()));
+            statement.setDate(4, new java.sql.Date(report.getSubmissionDate().getTime())); // Chuyển đổi Date
             statement.executeUpdate();
+
+            // Lấy report_id tự động tạo
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    report.setReportId(generatedKeys.getInt(1));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -73,7 +80,7 @@ public class ReportDAO {
             statement.setInt(1, report.getStudentId());
             statement.setInt(2, report.getCommitteeId());
             statement.setString(3, report.getReportTopic());
-            statement.setDate(4, new java.sql.Date(report.getSubmissionDate().getTime()));
+            statement.setDate(4, new java.sql.Date(report.getSubmissionDate().getTime())); // Chuyển đổi Date
             statement.setInt(5, report.getReportId());
             statement.executeUpdate();
         } catch (SQLException e) {

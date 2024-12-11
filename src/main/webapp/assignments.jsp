@@ -23,6 +23,13 @@
     <meta charset="UTF-8">
     <title>Quản lý Phân công Giảng viên</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+     <script>
+        function confirmDelete(assignmentId) {
+            if (confirm("Bạn có chắc chắn muốn xóa phân công này?")) {
+                window.location.href = "assignments?action=delete&id=" + assignmentId;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container mt-5">
@@ -43,8 +50,8 @@
                     <td><%= assignment.getLecturer() != null ? assignment.getLecturer().getFullName() : "Unknown" %></td>
                     <td><%= assignment.getCommittee() != null ? assignment.getCommittee().getCommitteeName() : "Unknown" %></td>
                     <td>
-                        <a href="editAssignment.jsp?id=<%= assignment.getAssignmentId() %>" class="btn btn-warning btn-sm">Sửa</a>
-                        <a href="deleteAssignment?id=<%= assignment.getAssignmentId() %>" class="btn btn-danger btn-sm">Xóa</a>
+                        <a href="assignments?action=edit&id=<%= assignment.getAssignmentId() %>" class="btn btn-warning btn-sm">Sửa</a>
+                        <a href="#" onclick="confirmDelete(<%= assignment.getAssignmentId() %>)" class="btn btn-danger btn-sm">Xóa</a>
                     </td>
                 </tr>
                 <% } %>

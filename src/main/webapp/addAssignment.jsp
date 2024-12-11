@@ -25,7 +25,7 @@
             List<Committee> committees = committeeDAO.getAllCommittees();
         %>
         
-        <form action="addAssignment" method="post" class="mt-4">
+        <form action="assignments" method="post" class="mt-4">
             <div class="mb-3">
                 <label for="lecturerId" class="form-label">Giảng viên</label>
                 <select id="lecturerId" name="lecturerId" class="form-control" required>
@@ -50,4 +50,3 @@
     </div>
 </body>
 </html>
-    
