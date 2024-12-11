@@ -23,14 +23,14 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Manage Lecturers</h1>
+        <h1 class="text-center">Quản lí Giảng Viên</h1>
         <table class="table table-bordered mt-4">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Department</th>
-                    <th>Actions</th>
+                    <th>Họ tên</th>
+                    <th>Ngành</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,14 +40,15 @@
                     <td><%= lecturer.getFullName() %></td>
                     <td><%= lecturer.getDepartment() %></td>
                     <td>
-                        <a href="lecturers?action=edit&id=<%= lecturer.getLecturerId() %>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="lecturers?action=edit&id=<%= lecturer.getLecturerId() %>" class="btn btn-warning btn-sm">Sửa</a>
                          <a href="#" onclick="confirmDelete(<%= lecturer.getLecturerId()%>)" class="btn btn-danger btn-sm">Xóa</a>
                     </td>
                 </tr>
                 <% } %>
             </tbody>
         </table>
-        <a href="addLecturer.jsp" class="btn btn-success">Add Lecturer</a>
+        <a href="addLecturer.jsp" class="btn btn-success">Thêm giảng viên</a>
+        <a href="index.jsp" class="btn btn-success">Trang chủ</a>
     </div>
 </body>
 </html>

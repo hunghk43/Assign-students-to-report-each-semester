@@ -12,11 +12,11 @@
         <h1 class="text-center">Thêm giảng viên</h1>
         <form action="lecturers" method="post" class="mt-4">
             <div class="mb-3">
-                <label for="fullName" class="form-label">Full Name</label>
+                <label for="fullName" class="form-label">Họ tên</label>
                 <input type="text" class="form-control" id="fullName" name="fullName" required>
             </div>
             <div class="mb-3">
-                <label for="department" class="form-label">Department</label>
+                <label for="department" class="form-label">Ngành</label>
                 <input type="text" class="form-control" id="department" name="department" required>
             </div>
             <button type="submit" class="btn btn-primary">Thêm </button>

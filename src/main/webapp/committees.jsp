@@ -48,6 +48,7 @@
             </tbody>
         </table>
         <a href="addCommittee.jsp" class="btn btn-success">Thêm Hội đồng</a>
+        <a href="index.jsp" class="btn btn-success">Trang chủ</a>
     </div>
 </body>
 </html>

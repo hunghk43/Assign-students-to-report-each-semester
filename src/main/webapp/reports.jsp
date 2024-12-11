@@ -47,7 +47,7 @@
                         <td><%= report.getReportTopic() %></td>
                         <td><%= formatter.format(report.getSubmissionDate()) %></td>
                         <td>
-                            <a href="reports?action=edit&id=<%= report.getReportId() %>" class="btn btn-warning btn-sm">Chỉnh sửa</a>
+                            <a href="reports?action=edit&id=<%= report.getReportId() %>" class="btn btn-warning btn-sm">Sửa</a>
                             <a href="#" onclick="confirmDelete(<%= report.getReportId() %>)" class="btn btn-danger btn-sm">Xóa</a>
                         </td>
                     </tr>
@@ -55,6 +55,7 @@
             </tbody>
         </table>
          <a href="addReport.jsp" class="btn btn-success">Thêm Báo cáo</a>
+         <a href="index.jsp" class="btn btn-success">Trang chủ</a>
     </div>
 </body>
 </html>

@@ -21,6 +21,8 @@ public class StudentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        request.setCharacterEncoding("UTF-8"); 
+        response.setCharacterEncoding("UTF-8"); 
 
         if ("delete".equals(action)) {
             int studentId = Integer.parseInt(request.getParameter("id"));
@@ -39,6 +41,8 @@ public class StudentController extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8"); 
+        response.setCharacterEncoding("UTF-8");
         String studentId = request.getParameter("studentId");
         String fullName = request.getParameter("fullName");
         int year = Integer.parseInt(request.getParameter("year"));

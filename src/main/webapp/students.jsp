@@ -13,6 +13,13 @@
     <meta charset="UTF-8">
     <title>Quản lý Sinh viên</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script>
+    function confirmDelete(studentId) {
+        if (confirm("Bạn có chắc chắn muốn xóa sinh viên này?")) {
+            window.location.href = "students?action=delete&id=" + studentId;
+        }
+    }
+</script>
 </head>
 <body>
     <div class="container mt-5">
@@ -45,13 +52,8 @@
             </tbody>
         </table>
         <a href="addStudent.jsp" class="btn btn-success">Thêm Sinh viên</a>
+         <a href="index.jsp" class="btn btn-success">Trang chủ</a>
     </div>
-    <script>
-    function confirmDelete(studentId) {
-        if (confirm("Bạn có chắc chắn muốn xóa sinh viên này?")) {
-            window.location.href = "students?action=delete&id=" + studentId;
-        }
-    }
-</script>
+    
 </body>
 </html>

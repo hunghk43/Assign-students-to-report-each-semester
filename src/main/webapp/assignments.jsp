@@ -58,6 +58,7 @@
             </tbody>
         </table>
         <a href="addAssignment.jsp" class="btn btn-success">Thêm Phân công</a>
+        <a href="index.jsp" class="btn btn-success">Trang chủ</a>
     </div>
 </body>
 </html>
