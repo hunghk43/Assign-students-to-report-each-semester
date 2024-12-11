@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Thêm Hội đồng</h1>
-        <form action="addCommittee" method="post" class="mt-4">
+        <form action="committees" method="post" class="mt-4">
             <div class="mb-3">
                 <label for="committeeName" class="form-label">Tên Hội đồng</label>
                 <input type="text" class="form-control" id="committeeName" name="committeeName" required>

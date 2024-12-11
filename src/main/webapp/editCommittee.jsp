@@ -3,10 +3,7 @@
 <%@ page import="dao.CommitteeDAO" %>
 <%@ page import="model.Committee" %>
 <%
-    // Lấy ID hội đồng từ request
     int committeeId = Integer.parseInt(request.getParameter("id"));
-
-    // Khởi tạo DAO và lấy thông tin hội đồng
     CommitteeDAO committeeDAO = new CommitteeDAO();
     Committee committee = committeeDAO.getCommitteeById(committeeId);
 %>
@@ -20,7 +17,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Chỉnh sửa Hội đồng</h1>
-        <form action="updateCommittee" method="post" class="mt-4">
+        <form action="committees" method="post" class="mt-4">
             <input type="hidden" name="committeeId" value="<%= committee.getCommitteeId() %>">
             <div class="mb-3">
                 <label for="committeeName" class="form-label">Tên Hội đồng</label>

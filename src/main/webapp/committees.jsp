@@ -4,7 +4,6 @@
 <%@ page import="dao.CommitteeDAO" %>
 <%@ page import="model.Committee" %>
 <%
-    // Khởi tạo DAO và lấy danh sách hội đồng
     CommitteeDAO committeeDAO = new CommitteeDAO();
     List<Committee> committees = committeeDAO.getAllCommittees();
 %>
@@ -14,6 +13,13 @@
     <meta charset="UTF-8">
     <title>Quản lý Hội đồng</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script>
+        function confirmDelete(committeeId) {
+            if (confirm("Bạn có chắc chắn muốn xóa hội đồng này?")) {
+                window.location.href = "committees?action=delete&id=" + committeeId;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container mt-5">
@@ -34,8 +40,8 @@
                     <td><%= committee.getCommitteeName() %></td>
                     <td><%= committee.getAcademicYear() %></td>
                     <td>
-                        <a href="editCommittee.jsp?id=<%= committee.getCommitteeId() %>" class="btn btn-warning btn-sm">Sửa</a>
-                        <a href="deleteCommittee?id=<%= committee.getCommitteeId() %>" class="btn btn-danger btn-sm">Xóa</a>
+                        <a href="committees?action=edit&id=<%= committee.getCommitteeId() %>" class="btn btn-warning btn-sm">Sửa</a>
+                        <a href="#" onclick="confirmDelete(<%= committee.getCommitteeId() %>)" class="btn btn-danger btn-sm">Xóa</a>
                     </td>
                 </tr>
                 <% } %>
@@ -45,4 +51,3 @@
     </div>
 </body>
 </html>
-    

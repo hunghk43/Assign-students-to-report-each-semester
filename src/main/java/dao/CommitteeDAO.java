@@ -51,10 +51,17 @@ public class CommitteeDAO {
     public void addCommittee(Committee committee) {
         String query = "INSERT INTO Committees (committee_name, academic_year) VALUES (?, ?)";
         try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, committee.getCommitteeName());
             statement.setInt(2, committee.getAcademicYear());
             statement.executeUpdate();
+
+            // Lấy committee_id tự động tạo
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    committee.setCommitteeId(generatedKeys.getInt(1));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,8 +1,7 @@
 package Controller;
 
-import dao.*;
-import model.*;
-import util.*;
+import dao.CommitteeDAO;
+import model.Committee;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,48 +19,43 @@ public class CommitteeController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String committeeId = request.getParameter("id");
-        if (committeeId != null) {
-            Committee committee = committeeDAO.getCommitteeById(Integer.parseInt(committeeId));
-            JsonUtil.writeJsonResponse(response, committee);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
+        if ("delete".equals(action)) {
+            int committeeId = Integer.parseInt(request.getParameter("id"));
+            committeeDAO.deleteCommittee(committeeId);
+            response.sendRedirect("committees");
+        } else if ("edit".equals(action)) {
+            int committeeId = Integer.parseInt(request.getParameter("id"));
+            Committee committee = committeeDAO.getCommitteeById(committeeId);
+            request.setAttribute("committee", committee);
+            request.getRequestDispatcher("editCommittee.jsp").forward(request, response);
         } else {
             List<Committee> committees = committeeDAO.getAllCommittees();
-            JsonUtil.writeJsonResponse(response, committees);
+            request.setAttribute("committees", committees);
+            request.getRequestDispatcher("committees.jsp").forward(request, response);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Committee committee = JsonUtil.readJsonRequest(request, Committee.class);
-        committeeDAO.addCommittee(committee);
-        response.setStatus(HttpServletResponse.SC_CREATED);
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Committee committee = JsonUtil.readJsonRequest(request, Committee.class);
-        committeeDAO.updateCommittee(committee);
-        response.setStatus(HttpServletResponse.SC_OK);
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int committeeId = Integer.parseInt(request.getParameter("id"));
-        committeeDAO.deleteCommittee(committeeId);
-        response.setStatus(HttpServletResponse.SC_NO_CONTENT);
-    }
-    protected void updateCommittee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int committeeId = Integer.parseInt(request.getParameter("committeeId"));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String committeeIdParam = request.getParameter("committeeId");
         String committeeName = request.getParameter("committeeName");
         int academicYear = Integer.parseInt(request.getParameter("academicYear"));
 
-        Committee committee = new Committee(committeeId, committeeName, academicYear);
-        CommitteeDAO committeeDAO = new CommitteeDAO();
-        committeeDAO.updateCommittee(committee);
+        if (committeeIdParam != null && !committeeIdParam.isEmpty()) {
+            // Update existing committee
+            int committeeId = Integer.parseInt(committeeIdParam);
+            Committee committee = new Committee(committeeId, committeeName, academicYear);
+            committeeDAO.updateCommittee(committee);
+        } else {
+            // Add new committee
+            Committee committee = new Committee(0, committeeName, academicYear); // Assuming 0 for new entries
+            committeeDAO.addCommittee(committee);
+        }
 
-        // Redirect về danh sách hội đồng
-        response.sendRedirect("committees.jsp");
+        response.sendRedirect("committees");
     }
-
 }
