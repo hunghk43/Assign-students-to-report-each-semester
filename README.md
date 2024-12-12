@@ -3,7 +3,7 @@
 Hướng dẫn các bước để chạy trang web, bao gồm cài đặt Tomcat, kết nối MySQL, và các bước thiết lập cần thiết.
 
 # 🎬 Demo
-![Animation](https://i.imgur.com/p5pwNoo.gif)
+![Animation](https://i.imgur.com/g8PQ1eh.png)
 
 
 ## ✅ Yêu cầu
