@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         // Kiểm tra username và password (giả sử username là "admin" và password là "12345")
-        if ("admin".equals(username) && "12345".equals(password)) {
+        if ("hungdeptrai".equals(username) && "1234567890".equals(password)) {
             // Tạo session và lưu username
             HttpSession session = request.getSession(false);
             if (session == null) {

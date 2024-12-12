@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="image/logo_ued.ico" rel="icon">
+    <link href="image/logo_ued.jpg" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +41,7 @@
     </div>
     <!-- Spinner End -->
     
-   <!-- Navbar Start -->
+    <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
        <a href="index.jsp" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
        <img src="image/logo_ued.jpg" alt="Logo Đại học SP" height="50">
@@ -63,45 +63,30 @@
     <!-- Navbar End -->
 
 
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
-        <div class="owl-carousel header-carousel position-relative">
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="image/bgc_ued.jpg" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">ĐẠI HỌC SƯ PHẠM ĐÀ NẴNG</h5>
-                                <h1 class="display-3 text-white animated slideInDown">HỆ THỐNG PHÂN CÔNG SINH VIÊN BÁO CÁO CUỐI KỲ</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">UED: Dấu ấn của thời gian, niềm tự hào của thế hệ</p>
-                          <a href="https://www.facebook.com/khoatinhoc?locale=vi_VN" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" target="_blank">Khoa Tin Học</a>
-<a href="https://www.facebook.com/clbtinhoc.ued?locale=vi_VN" class="btn btn-light py-md-3 px-md-5 animated slideInRight" target="_blank">CLB Tin Học</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="image/bgc2_ued.jpg" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">ĐẠI HỌC SƯ PHẠM ĐÀ NẴNG</h5>
-                                <h1 class="display-3 text-white animated slideInDown"> ĐỔI MỚI - HỘI NHẬP - PHÁT TRIỂN BỀN VỮNG</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Gia đình thứ hai, nơi chắp cánh ước mơ!!!</p>
-                                <a href="https://www.facebook.com/khoatinhoc?locale=vi_VN" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" target="_blank">Khoa Tin Học</a>
-<a href="https://www.facebook.com/clbtinhoc.ued?locale=vi_VN" class="btn btn-light py-md-3 px-md-5 animated slideInRight" target="_blank">CLB Tin Học</a>
-                            </div>
-                        </div>
-                    </div>
+    
+
+
+  
+    <!-- Navbar End -->
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Giới thiệu nội dung</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Giới thiệu</a></li>
+                            
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Carousel End -->
-     <!-- About Start -->
+    <!-- Header End -->
+      <!-- About Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5">
@@ -140,14 +125,7 @@
     </div>
     <!-- About End -->
 
-    
 
-
-
-
-
-
-    <!-- Service Start -->
  <!-- Service Start -->
 <div class="container-xxl py-5">
     <div class="container">
@@ -211,124 +189,10 @@
     </div>
 </div>
 <!-- Service End -->
+
+  
     
 
-
-   
-
-
-    <!-- Categories Start -->
-    <div class="container-xxl py-5 category">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Hoạt động </h6>
-                <h1 class="mb-5">Hoạt động mới</h1>
-            </div>
-            <div class="row g-3">
-                <div class="col-lg-7 col-md-6">
-                    <div class="row g-3">
-                        <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="image/ảnh 2 _ued.jpg" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Công trình văn hoá</h5>
-                                    
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="image/nhagiao.jpg" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Nhà Giáo Việt Nam</h5>
-                                   
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
-                            <a class="position-relative d-block overflow-hidden" href="">
-                                <img class="img-fluid" src="image/taphuan.jpg" alt="">
-                                <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Tập huấn</h5>
-                              
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 50px;">
-                    <a class="position-relative d-block h-100 overflow-hidden" href="">
-                        <img class="img-fluid position-absolute w-100 h-100" src="image/ngaysach.jpg" alt="" style="object-fit: cover;">
-                        <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
-                            <h5 class="m-0">Ngày sách Việt Nam</h5>
-                        
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Categories Start -->
-
-
-    <!-- Courses Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Khoa Tin Học</h6>
-                <h1 class="mb-5">Câu lạc Bộ Tin Học </h1>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="image/clb_1.jpg" alt="">
-                            
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                           
-                            <h5 class="mb-4">Chào đón TSV</h5>
-                        </div>
-                       
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="image/clb_2.jpg" alt="">
-                           
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            
-                          
-                            <h5 class="mb-4">Hoạt động ngoại khoá </h5>
-                        </div>
-                       
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="course-item bg-light">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="image/clntinhoc.jpg" alt="">
-                            
-                        </div>
-                        <div class="text-center p-4 pb-0">
-                            
-                            <h5 class="mb-4">Thành viên CLB 2024</h5>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Courses End -->
-
-
-    
-
-   
-        
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -348,7 +212,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Nổi bật</h4>
+                    <h4 class="text-white mb-3">Thư viện ảnh</h4>
                     <div class="row g-2 pt-2">
                         <div class="col-4">
                             <img class="img-fluid bg-light p-1" src="image/clb_4.jpg" alt="">

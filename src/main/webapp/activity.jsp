@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="image/logo_ued.ico" rel="icon">
+    <link href="image/logo_ued.jpg" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +41,7 @@
     </div>
     <!-- Spinner End -->
     
-   <!-- Navbar Start -->
+    <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
        <a href="index.jsp" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
        <img src="image/logo_ued.jpg" alt="Logo Đại học SP" height="50">
@@ -62,162 +62,26 @@
     </nav>
     <!-- Navbar End -->
 
-
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
-        <div class="owl-carousel header-carousel position-relative">
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="image/bgc_ued.jpg" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">ĐẠI HỌC SƯ PHẠM ĐÀ NẴNG</h5>
-                                <h1 class="display-3 text-white animated slideInDown">HỆ THỐNG PHÂN CÔNG SINH VIÊN BÁO CÁO CUỐI KỲ</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">UED: Dấu ấn của thời gian, niềm tự hào của thế hệ</p>
-                          <a href="https://www.facebook.com/khoatinhoc?locale=vi_VN" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" target="_blank">Khoa Tin Học</a>
-<a href="https://www.facebook.com/clbtinhoc.ued?locale=vi_VN" class="btn btn-light py-md-3 px-md-5 animated slideInRight" target="_blank">CLB Tin Học</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="image/bgc2_ued.jpg" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">ĐẠI HỌC SƯ PHẠM ĐÀ NẴNG</h5>
-                                <h1 class="display-3 text-white animated slideInDown"> ĐỔI MỚI - HỘI NHẬP - PHÁT TRIỂN BỀN VỮNG</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Gia đình thứ hai, nơi chắp cánh ước mơ!!!</p>
-                                <a href="https://www.facebook.com/khoatinhoc?locale=vi_VN" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft" target="_blank">Khoa Tin Học</a>
-<a href="https://www.facebook.com/clbtinhoc.ued?locale=vi_VN" class="btn btn-light py-md-3 px-md-5 animated slideInRight" target="_blank">CLB Tin Học</a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">HOẠT ĐỘNG CỦA NHÀ TRƯỜNG</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Giới thiệu</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Hoạt động</a></li>
+                            
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Carousel End -->
-     <!-- About Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
-                    <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" src="image/index_ued.jpg" alt="" style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="section-title bg-white text-start text-primary pe-3">Giới thiệu</h6>
-                    <h1 class="mb-4">Chào mừng đến với Hệ thống phân công sinh viên báo cáo mỗi kỳ</h1>
-                    <p class="mb-4">Trang web cho phép các quản lí khoa có thể phân công giảng viên vào các hội đồng báo cáo cho sinh viên năm 3, năm 4</p>
-                    
-                    <div class="row gy-2 gx-4 mb-4">
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Quản lý Sinh viên</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Quản lý Giảng viên</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Quản lý Hội đồng</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Phân công Giảng viên</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Quản lý Báo cáo</p>
-                        </div>
-                        
-                    </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Xem thêm</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
-
-    
-
-
-
-
-
-
-    <!-- Service Start -->
- <!-- Service Start -->
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a href="students.jsp">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
-                            <h5 class="mb-3">Quản lý Sinh viên</h5>
-                            <p>Cung cấp thông tin sinh viên </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a href="lecturers.jsp">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-globe text-primary mb-4"></i>
-                            <h5 class="mb-3"> Quản lý Giảng viên</h5>
-                            <p>Cung cấp thông tin giảng viên</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a href="committees.jsp">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-home text-primary mb-4"></i>
-                            <h5 class="mb-3">Quản lý Hội đồng</h5>
-                            <p>Cung cấp thông tin hội đồng</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a href="assignments.jsp">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
-                            <h5 class="mb-3">Phân công Giảng viên</h5>
-                            <p>Cung cấp thông tin phân công giảng viên vào các hội đồng khác nhau</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a href="reports.jsp">
-                    <div class="service-item text-center pt-3">
-                        <div class="p-4">
-                            <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
-                            <h5 class="mb-3">Quản lý Báo cáo</h5>
-                            <p>Cung cấp thông tin đề tài báo cáo của sinh viên</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Service End -->
-    
-
-
-   
-
-
-    <!-- Categories Start -->
+    <!-- Header End -->
+     <!-- Categories Start -->
     <div class="container-xxl py-5 category">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -327,8 +191,9 @@
 
     
 
-   
-        
+
+
+
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -348,7 +213,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Nổi bật</h4>
+                    <h4 class="text-white mb-3">Thư viện ảnh</h4>
                     <div class="row g-2 pt-2">
                         <div class="col-4">
                             <img class="img-fluid bg-light p-1" src="image/clb_4.jpg" alt="">
