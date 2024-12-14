@@ -43,4 +43,4 @@ Hướng dẫn các bước để chạy trang web, bao gồm cài đặt Tomcat
 
 ### b. ▶️ Chạy project
 
--   Mở file index.jsp mà phanggg
+-   Mở file login.jsp mà phanggg
