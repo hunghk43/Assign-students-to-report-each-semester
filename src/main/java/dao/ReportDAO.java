@@ -18,10 +18,9 @@ public class ReportDAO {
             while (resultSet.next()) {
                 reports.add(new Report(
                         resultSet.getInt("report_id"),
-                        resultSet.getInt("student_id"),
-                        resultSet.getInt("committee_id"),
-                        resultSet.getString("report_topic"),
-                        resultSet.getDate("submission_date")
+                        resultSet.getInt("project_id"),
+                        resultSet.getDate("submission_date"),
+                        resultSet.getString("report_file_path")
                 ));
             }
         } catch (SQLException e) {
@@ -39,10 +38,9 @@ public class ReportDAO {
                 if (resultSet.next()) {
                     return new Report(
                             resultSet.getInt("report_id"),
-                            resultSet.getInt("student_id"),
-                            resultSet.getInt("committee_id"),
-                            resultSet.getString("report_topic"),
-                            resultSet.getDate("submission_date")
+                            resultSet.getInt("project_id"),
+                            resultSet.getDate("submission_date"),
+                            resultSet.getString("report_file_path")
                     );
                 }
             }
@@ -53,16 +51,14 @@ public class ReportDAO {
     }
 
     public void addReport(Report report) {
-        String query = "INSERT INTO Reports (student_id, committee_id, report_topic, submission_date) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO Reports (project_id, submission_date, report_file_path) VALUES (?, ?, ?)";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, report.getStudentId());
-            statement.setInt(2, report.getCommitteeId());
-            statement.setString(3, report.getReportTopic());
-            statement.setDate(4, new java.sql.Date(report.getSubmissionDate().getTime())); // Chuyển đổi Date
+            statement.setInt(1, report.getProjectId());
+            statement.setDate(2, new java.sql.Date(report.getSubmissionDate().getTime()));
+            statement.setString(3, report.getReportFilePath());
             statement.executeUpdate();
 
-            // Lấy report_id tự động tạo
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     report.setReportId(generatedKeys.getInt(1));
@@ -74,14 +70,13 @@ public class ReportDAO {
     }
 
     public void updateReport(Report report) {
-        String query = "UPDATE Reports SET student_id = ?, committee_id = ?, report_topic = ?, submission_date = ? WHERE report_id = ?";
+        String query = "UPDATE Reports SET project_id = ?, submission_date = ?, report_file_path = ? WHERE report_id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, report.getStudentId());
-            statement.setInt(2, report.getCommitteeId());
-            statement.setString(3, report.getReportTopic());
-            statement.setDate(4, new java.sql.Date(report.getSubmissionDate().getTime())); // Chuyển đổi Date
-            statement.setInt(5, report.getReportId());
+            statement.setInt(1, report.getProjectId());
+            statement.setDate(2, new java.sql.Date(report.getSubmissionDate().getTime()));
+            statement.setString(3, report.getReportFilePath());
+            statement.setInt(4, report.getReportId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

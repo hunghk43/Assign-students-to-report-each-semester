@@ -1,7 +1,7 @@
 package Controller;
 
-import dao.*;
-import model.*;
+import dao.StudentDAO;
+import model.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +21,8 @@ public class StudentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        request.setCharacterEncoding("UTF-8"); 
-        response.setCharacterEncoding("UTF-8"); 
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         if ("delete".equals(action)) {
             int studentId = Integer.parseInt(request.getParameter("id"));
@@ -32,32 +32,47 @@ public class StudentController extends HttpServlet {
             int studentId = Integer.parseInt(request.getParameter("id"));
             Student student = studentDAO.getStudentById(studentId);
             request.setAttribute("student", student);
-            request.getRequestDispatcher("editStudent.jsp").forward(request, response);
-        } else { 
+            request.getRequestDispatcher("students/editStudent.jsp").forward(request, response);
+        } else if ("list".equals(action)) {
             List<Student> students = studentDAO.getAllStudents();
             request.setAttribute("students", students);
-            request.getRequestDispatcher("students.jsp").forward(request, response);
+            request.getRequestDispatcher("students/listStudents.jsp").forward(request, response);
+        }else {
+            // Xử lý mặc định hoặc chuyển hướng đến trang chính
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.setCharacterEncoding("UTF-8"); 
+        request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        String studentId = request.getParameter("studentId");
-        String fullName = request.getParameter("fullName");
-        int year = Integer.parseInt(request.getParameter("year"));
-        String major = request.getParameter("major");
-        String studentClass = request.getParameter("className");
+        String action = request.getParameter("action");
 
-        Student student = new Student(studentId == null ? 0 : Integer.parseInt(studentId), fullName, year, major, studentClass);
-        if (studentId == null || studentId.isEmpty()) {
-            // Thêm mới
-            studentDAO.addStudent(student);
+         if ("add".equals(action)) {
+            String fullName = request.getParameter("fullName");
+            int year = Integer.parseInt(request.getParameter("year"));
+            String major = request.getParameter("major");
+            String studentClass = request.getParameter("className");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+             Student student = new Student(0, 0, fullName, year, major, studentClass, email, phone);
+             studentDAO.addStudent(student);
+             response.sendRedirect("students?action=list");
+        } else if ("update".equals(action)) {
+             int studentId = Integer.parseInt(request.getParameter("studentId"));
+             String fullName = request.getParameter("fullName");
+             int year = Integer.parseInt(request.getParameter("year"));
+             String major = request.getParameter("major");
+             String studentClass = request.getParameter("className");
+             String email = request.getParameter("email");
+             String phone = request.getParameter("phone");
+             Student student = new Student(studentId, 0, fullName, year, major, studentClass, email, phone);
+             studentDAO.updateStudent(student);
+             response.sendRedirect("students?action=list");
         } else {
-            // Cập nhật
-            studentDAO.updateStudent(student);
+             // Xử lí mặc định
+             response.sendRedirect(request.getContextPath() + "/");
         }
-
-        response.sendRedirect("students"); // Redirect để doGet được gọi lại
     }
 }

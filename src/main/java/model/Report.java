@@ -1,26 +1,21 @@
 package model;
 
-import dao.StudentDAO;
-import dao.CommitteeDAO;
-
 import java.util.Date;
 
 public class Report {
     private int reportId;
-    private int studentId;
-    private int committeeId;
-    private String reportTopic;
+    private int projectId;
     private Date submissionDate;
+    private String reportFilePath;
 
-    // Constructor
-    public Report() {}
+    public Report() {
+    }
 
-    public Report(int reportId, int studentId, int committeeId, String reportTopic, Date submissionDate) {
+    public Report(int reportId, int projectId, Date submissionDate, String reportFilePath) {
         this.reportId = reportId;
-        this.studentId = studentId;
-        this.committeeId = committeeId;
-        this.reportTopic = reportTopic;
+        this.projectId = projectId;
         this.submissionDate = submissionDate;
+        this.reportFilePath = reportFilePath;
     }
 
     // Getters and Setters
@@ -32,28 +27,12 @@ public class Report {
         this.reportId = reportId;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
-    public int getCommitteeId() {
-        return committeeId;
-    }
-
-    public void setCommitteeId(int committeeId) {
-        this.committeeId = committeeId;
-    }
-
-    public String getReportTopic() {
-        return reportTopic;
-    }
-
-    public void setReportTopic(String reportTopic) {
-        this.reportTopic = reportTopic;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
     public Date getSubmissionDate() {
@@ -64,15 +43,11 @@ public class Report {
         this.submissionDate = submissionDate;
     }
 
-    // Phương thức lấy thông tin sinh viên
-    public Student getStudent() {
-        StudentDAO studentDAO = new StudentDAO();
-        return studentDAO.getStudentById(this.studentId);  // Giả sử bạn có phương thức getStudentById trong StudentDAO
+    public String getReportFilePath() {
+        return reportFilePath;
     }
 
-    // Phương thức lấy thông tin hội đồng
-    public Committee getCommittee() {
-        CommitteeDAO committeeDAO = new CommitteeDAO();
-        return committeeDAO.getCommitteeById(this.committeeId);  // Giả sử bạn có phương thức getCommitteeById trong CommitteeDAO
+    public void setReportFilePath(String reportFilePath) {
+        this.reportFilePath = reportFilePath;
     }
 }

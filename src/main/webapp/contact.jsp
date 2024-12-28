@@ -45,7 +45,7 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
        <a href="index.jsp" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
        <img src="image/logo_ued.jpg" alt="Logo Đại học SP" height="50">
-            <h2 class="m-0 text-primary">SƯ PHẠM ĐÀ NẴNG</h2>
+            <h2 class="m-0 text-primary"> ĐH SƯ PHẠM ĐÀ NẴNG</h2>
         </a>
 </a>
         </a>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="ms-3">
                             <h5 class="text-primary">Email</h5>
-                            <p class="mb-0">ued@udn.comp>
+                            <p class="mb-0">ued@udn.com
                         </div>
                     </div>
                 </div>

@@ -30,33 +30,42 @@ public class LecturerController extends HttpServlet {
             int lecturerId = Integer.parseInt(request.getParameter("id"));
             Lecturer lecturer = lecturerDAO.getLecturerById(lecturerId);
             request.setAttribute("lecturer", lecturer);
-            request.getRequestDispatcher("editLecturer.jsp").forward(request, response);
-        } else {
+            request.getRequestDispatcher("lecturers/editLecturer.jsp").forward(request, response);
+        } else if ("list".equals(action)) {
             List<Lecturer> lecturers = lecturerDAO.getAllLecturers();
             request.setAttribute("lecturers", lecturers);
-            request.getRequestDispatcher("lecturers.jsp").forward(request, response);
+            request.getRequestDispatcher("lecturers/listLecturers.jsp").forward(request, response);
+        }else {
+            // Xử lý mặc định hoặc chuyển hướng đến trang chính
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         request.setCharacterEncoding("UTF-8");
-        String lecturerIdParam = request.getParameter("lecturerId");
-        String fullName = request.getParameter("fullName");
-        String department = request.getParameter("department");
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
 
-        // Check if lecturerId is present and not empty to decide whether to update or add
-        if (lecturerIdParam != null && !lecturerIdParam.isEmpty()) {
-            // Update existing lecturer
-            int lecturerId = Integer.parseInt(lecturerIdParam);
-            Lecturer lecturer = new Lecturer(lecturerId, fullName, department);
-            lecturerDAO.updateLecturer(lecturer);
+         if ("add".equals(action)) {
+            String fullName = request.getParameter("fullName");
+            String department = request.getParameter("department");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+             Lecturer lecturer = new Lecturer(0, 0, fullName, department, email, phone);
+             lecturerDAO.addLecturer(lecturer);
+             response.sendRedirect("lecturers?action=list");
+        } else if ("update".equals(action)) {
+             int lecturerId = Integer.parseInt(request.getParameter("lecturerId"));
+             String fullName = request.getParameter("fullName");
+             String department = request.getParameter("department");
+             String email = request.getParameter("email");
+             String phone = request.getParameter("phone");
+             Lecturer lecturer = new Lecturer(lecturerId, 0, fullName, department, email, phone);
+             lecturerDAO.updateLecturer(lecturer);
+             response.sendRedirect("lecturers?action=list");
         } else {
-            // Add new lecturer
-            Lecturer lecturer = new Lecturer(0, fullName, department); // Assuming 0 or any non-valid ID for new entries
-            lecturerDAO.addLecturer(lecturer);
+             // Xử lí mặc định
+             response.sendRedirect(request.getContextPath() + "/");
         }
-
-        response.sendRedirect("lecturers");
     }
 }

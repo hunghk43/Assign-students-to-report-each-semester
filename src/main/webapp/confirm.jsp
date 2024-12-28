@@ -12,7 +12,7 @@
         <h2>Xác nhận đăng nhập</h2>
     
     <%
-        // Lấy session
+     
         HttpSession Session = request.getSession(false);
         if (session != null) {
             String username = (String) session.getAttribute("username");

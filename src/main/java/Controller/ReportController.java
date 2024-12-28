@@ -33,45 +33,64 @@ public class ReportController extends HttpServlet {
             int reportId = Integer.parseInt(request.getParameter("id"));
             Report report = reportDAO.getReportById(reportId);
             request.setAttribute("report", report);
-            request.getRequestDispatcher("editReport.jsp").forward(request, response);
-        } else {
+            request.getRequestDispatcher("reports/editReport.jsp").forward(request, response);
+        } else if ("list".equals(action)) {
             List<Report> reports = reportDAO.getAllReports();
             request.setAttribute("reports", reports);
-            request.getRequestDispatcher("reports.jsp").forward(request, response);
+            request.getRequestDispatcher("reports/listReports.jsp").forward(request, response);
+        } else {
+            // Xử lý mặc định hoặc chuyển hướng đến trang chính
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String reportIdParam = request.getParameter("reportId");
-        int studentId = Integer.parseInt(request.getParameter("studentId"));
-        int committeeId = Integer.parseInt(request.getParameter("committeeId"));
-        String reportTopic = request.getParameter("reportTopic");
-        String dateString = request.getParameter("submissionDate");
+        String action = request.getParameter("action");
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date submissionDate = null;
-        try {
-            submissionDate = formatter.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            // Handle the error appropriately. For instance, you can send an error response.
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid date format");
-            return;
-        }
+         if ("add".equals(action)) {
+            int projectId = Integer.parseInt(request.getParameter("projectId"));
+            String reportTopic = request.getParameter("reportTopic");
+            String dateString = request.getParameter("submissionDate");
+            String reportFilePath = request.getParameter("reportFilePath");
 
-        if (reportIdParam != null && !reportIdParam.isEmpty()) {
-            // Update existing report
-            int reportId = Integer.parseInt(reportIdParam);
-            Report report = new Report(reportId, studentId, committeeId, reportTopic, submissionDate);
-            reportDAO.updateReport(report);
+             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+             Date submissionDate = null;
+             try {
+                 submissionDate = formatter.parse(dateString);
+             } catch (ParseException e) {
+                 e.printStackTrace();
+                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid date format");
+                 return;
+             }
+
+             Report report = new Report(0, projectId, submissionDate, reportFilePath);
+             reportDAO.addReport(report);
+             response.sendRedirect("reports?action=list");
+        } else if ("update".equals(action)) {
+             int reportId = Integer.parseInt(request.getParameter("reportId"));
+             int projectId = Integer.parseInt(request.getParameter("projectId"));
+             String reportTopic = request.getParameter("reportTopic");
+             String dateString = request.getParameter("submissionDate");
+             String reportFilePath = request.getParameter("reportFilePath");
+
+             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+             Date submissionDate = null;
+             try {
+                 submissionDate = formatter.parse(dateString);
+             } catch (ParseException e) {
+                 e.printStackTrace();
+                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid date format");
+                 return;
+             }
+
+             Report report = new Report(reportId, projectId, submissionDate, reportFilePath);
+             reportDAO.updateReport(report);
+             response.sendRedirect("reports?action=list");
         } else {
-            // Add new report
-            Report report = new Report(0, studentId, committeeId, reportTopic, submissionDate);
-            reportDAO.addReport(report);
+             // Xử lí mặc định
+             response.sendRedirect(request.getContextPath() + "/");
         }
-
-        response.sendRedirect("reports");
     }
 }

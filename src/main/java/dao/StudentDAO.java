@@ -9,20 +9,22 @@ import java.util.List;
 
 public class StudentDAO {
 
-    // Lấy danh sách tất cả sinh viên
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
-        String query = "SELECT student_id, full_name, year, major, StudentClass FROM Students";  // Đổi cột 'class' thành 'StudentClass'
+        String query = "SELECT * FROM Students";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 students.add(new Student(
                         resultSet.getInt("student_id"),
+                        resultSet.getInt("user_id"),
                         resultSet.getString("full_name"),
                         resultSet.getInt("year"),
                         resultSet.getString("major"),
-                        resultSet.getString("StudentClass") // Truy xuất cột StudentClass
+                        resultSet.getString("class"),
+                        resultSet.getString("email"),
+                        resultSet.getString("phone")
                 ));
             }
         } catch (SQLException e) {
@@ -31,9 +33,8 @@ public class StudentDAO {
         return students;
     }
 
-    // Lấy thông tin sinh viên theo ID
     public Student getStudentById(int studentId) {
-        String query = "SELECT student_id, full_name, year, major, StudentClass FROM Students WHERE student_id = ?"; // Đổi cột 'class' thành 'StudentClass'
+        String query = "SELECT * FROM Students WHERE student_id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, studentId);
@@ -41,10 +42,13 @@ public class StudentDAO {
                 if (resultSet.next()) {
                     return new Student(
                             resultSet.getInt("student_id"),
+                            resultSet.getInt("user_id"),
                             resultSet.getString("full_name"),
                             resultSet.getInt("year"),
                             resultSet.getString("major"),
-                            resultSet.getString("StudentClass") // Truy xuất cột StudentClass
+                            resultSet.getString("class"),
+                            resultSet.getString("email"),
+                            resultSet.getString("phone")
                     );
                 }
             }
@@ -54,40 +58,49 @@ public class StudentDAO {
         return null;
     }
 
-    // Thêm mới sinh viên
     public void addStudent(Student student) {
-        String query = "INSERT INTO Students (full_name, year, major, StudentClass) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO Students (user_id, full_name, year, major, class, email, phone) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, student.getFullName());
-            statement.setInt(2, student.getYear());
-            statement.setString(3, student.getMajor());
-            statement.setString(4, student.getStudentClass());
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setInt(1, student.getUserId());
+            statement.setString(2, student.getFullName());
+            statement.setInt(3, student.getYear());
+            statement.setString(4, student.getMajor());
+            statement.setString(5, student.getStudentClass());
+            statement.setString(6, student.getEmail());
+            statement.setString(7, student.getPhone());
             statement.executeUpdate();
+
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    student.setStudentId(generatedKeys.getInt(1));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // Cập nhật thông tin sinh viên
     public void updateStudent(Student student) {
-        String query = "UPDATE Students SET full_name = ?, year = ?, major = ?, StudentClass = ? WHERE student_id = ?";  // Đổi cột 'class' thành 'StudentClass'
+        String query = "UPDATE Students SET user_id = ?, full_name = ?, year = ?, major = ?, class = ?, email = ?, phone = ? WHERE student_id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, student.getFullName());
-            statement.setInt(2, student.getYear());
-            statement.setString(3, student.getMajor());
-            statement.setString(4, student.getStudentClass());  // Gọi phương thức getStudentClass()
-            statement.setInt(5, student.getStudentId());
+            statement.setInt(1, student.getUserId());
+            statement.setString(2, student.getFullName());
+            statement.setInt(3, student.getYear());
+            statement.setString(4, student.getMajor());
+            statement.setString(5, student.getStudentClass());
+            statement.setString(6, student.getEmail());
+            statement.setString(7, student.getPhone());
+            statement.setInt(8, student.getStudentId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // Xóa sinh viên theo ID
     public void deleteStudent(int studentId) {
-        String query = "DELETE FROM Students WHERE student_id = ?";  // Đổi cột 'class' thành 'StudentClass' không cần thiết ở đây, vì cột ID không thay đổi
+        String query = "DELETE FROM Students WHERE student_id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, studentId);

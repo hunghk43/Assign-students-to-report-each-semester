@@ -1,7 +1,7 @@
 package Controller;
 
-import dao.LecturerAssignmentDAO;
-import model.LecturerAssignment;
+import dao.ProjectLecturerDAO;
+import model.ProjectLecturer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,13 +9,13 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/assignments")
+@WebServlet("/project-lecturers") // Đổi URL mapping
 public class AssignmentController extends HttpServlet {
-    private LecturerAssignmentDAO assignmentDAO;
+    private ProjectLecturerDAO projectLecturerDAO;
 
     @Override
     public void init() {
-        assignmentDAO = new LecturerAssignmentDAO();
+        projectLecturerDAO = new ProjectLecturerDAO();
     }
 
     @Override
@@ -23,40 +23,51 @@ public class AssignmentController extends HttpServlet {
         String action = request.getParameter("action");
 
         if ("delete".equals(action)) {
-            int assignmentId = Integer.parseInt(request.getParameter("id"));
-            assignmentDAO.deleteAssignment(assignmentId);
-            response.sendRedirect("assignments");
+            int projectId = Integer.parseInt(request.getParameter("projectId"));
+            int studentId = Integer.parseInt(request.getParameter("studentId"));
+            int lecturerId = Integer.parseInt(request.getParameter("lecturerId"));
+            projectLecturerDAO.deleteProjectLecturer(projectId, studentId, lecturerId);
+            response.sendRedirect("project-lecturers");
         } else if ("edit".equals(action)) {
-            int assignmentId = Integer.parseInt(request.getParameter("id"));
-            LecturerAssignment assignment = assignmentDAO.getAssignmentById(assignmentId);
-            request.setAttribute("assignment", assignment);
-            request.getRequestDispatcher("editAssignment.jsp").forward(request, response);
+            int projectId = Integer.parseInt(request.getParameter("projectId"));
+            int studentId = Integer.parseInt(request.getParameter("studentId"));
+            int lecturerId = Integer.parseInt(request.getParameter("lecturerId"));
+            ProjectLecturer projectLecturer = projectLecturerDAO.getProjectLecturerById(projectId, studentId, lecturerId);
+            request.setAttribute("projectLecturer", projectLecturer);
+            request.getRequestDispatcher("editAssignment.jsp").forward(request, response); // Sửa đường dẫn JSP
+        } else if ("list".equals(action)) {
+            List<ProjectLecturer> projectLecturers = projectLecturerDAO.getAllProjectLecturers();
+            request.setAttribute("projectLecturers", projectLecturers);
+            request.getRequestDispatcher("assignments.jsp").forward(request, response); // Sửa đường dẫn JSP
         } else {
-            List<LecturerAssignment> assignments = assignmentDAO.getAllAssignments();
-            request.setAttribute("assignments", assignments);
-            request.getRequestDispatcher("assignments.jsp").forward(request, response);
+            // Xử lý mặc định hoặc chuyển hướng đến trang chính
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String assignmentIdParam = request.getParameter("assignmentId");
-        int lecturerId = Integer.parseInt(request.getParameter("lecturerId"));
-        int committeeId = Integer.parseInt(request.getParameter("committeeId"));
-       
+        String action = request.getParameter("action");
 
-        if (assignmentIdParam != null && !assignmentIdParam.isEmpty()) {
-            // Update existing assignment
-            int assignmentId = Integer.parseInt(assignmentIdParam);
-            LecturerAssignment assignment = new LecturerAssignment(assignmentId, lecturerId, committeeId);
-            assignmentDAO.updateAssignment(assignment);
+        if ("add".equals(action)) {
+            int projectId = Integer.parseInt(request.getParameter("projectId"));
+            int studentId = Integer.parseInt(request.getParameter("studentId"));
+            int lecturerId = Integer.parseInt(request.getParameter("lecturerId"));
+            ProjectLecturer projectLecturer = new ProjectLecturer(projectId, studentId, lecturerId);
+            projectLecturerDAO.addProjectLecturer(projectLecturer);
+            response.sendRedirect("project-lecturers?action=list");
+        } else if ("update".equals(action)) {
+            // Assuming you might want to update the lecturer for a project-student pair
+            int projectId = Integer.parseInt(request.getParameter("projectId"));
+            int studentId = Integer.parseInt(request.getParameter("studentId"));
+            int lecturerId = Integer.parseInt(request.getParameter("lecturerId"));
+            ProjectLecturer projectLecturer = new ProjectLecturer(projectId, studentId, lecturerId);
+            projectLecturerDAO.updateProjectLecturer(projectLecturer);
+            response.sendRedirect("project-lecturers?action=list");
         } else {
-            // Add new assignment
-            LecturerAssignment assignment = new LecturerAssignment(0, lecturerId, committeeId);
-            assignmentDAO.addAssignment(assignment);
+            // Xử lý mặc định
+            response.sendRedirect(request.getContextPath() + "/");
         }
-
-        response.sendRedirect("assignments");
     }
 }

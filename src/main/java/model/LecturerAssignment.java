@@ -1,23 +1,23 @@
 package model;
 
 import dao.LecturerDAO;
-import dao.CommitteeDAO;
+import dao.CouncilDAO;
 
 public class LecturerAssignment {
     private int assignmentId;
     private int lecturerId;
-    private int committeeId;
+    private int councilId;
 
-    // Constructors
+   
     public LecturerAssignment() {}
 
-    public LecturerAssignment(int assignmentId, int lecturerId, int committeeId) {
+    public LecturerAssignment(int assignmentId, int lecturerId, int councilId) {
         this.assignmentId = assignmentId;
         this.lecturerId = lecturerId;
-        this.committeeId = committeeId;
+        this.councilId = councilId;
     }
 
-    // Getters and Setters
+
     public int getAssignmentId() {
         return assignmentId;
     }
@@ -34,23 +34,23 @@ public class LecturerAssignment {
         this.lecturerId = lecturerId;
     }
 
-    public int getCommitteeId() {
-        return committeeId;
+    public int getCouncilId() {
+        return councilId;
     }
 
-    public void setCommitteeId(int committeeId) {
-        this.committeeId = committeeId;
+    public void setCouncilId(int councilId) {
+        this.councilId = councilId;
     }
 
-    // Phương thức getLecturer() để lấy thông tin giảng viên
+
     public Lecturer getLecturer() {
         LecturerDAO lecturerDAO = new LecturerDAO();
-        return lecturerDAO.getLecturerById(this.lecturerId);  // Lấy giảng viên từ lecturerId
+        return lecturerDAO.getLecturerById(this.lecturerId);  
     }
 
-    // Phương thức getCommittee() để lấy thông tin hội đồng
-    public Committee getCommittee() {
-        CommitteeDAO committeeDAO = new CommitteeDAO();
-        return committeeDAO.getCommitteeById(this.committeeId);  // Lấy hội đồng từ committeeId
+   
+    public Council getCouncil() {
+        CouncilDAO councilDAO = new CouncilDAO();
+        return councilDAO.getCouncilById(this.councilId);  
     }
 }

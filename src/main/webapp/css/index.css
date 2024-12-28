@@ -97,7 +97,7 @@
     font-weight: 700;
     letter-spacing: 0.5px;
     transition: .3s;
-    font-family: 'Nunito', sans-serif; /* Thêm dòng này để thay đổi font chữ */
+    font-family: 'Nunito', sans-serif; 
 }
 
 .navbar-light .navbar-nav .nav-link:hover,

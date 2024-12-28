@@ -19,7 +19,7 @@ public class LecturerAssignmentDAO {
                 assignments.add(new LecturerAssignment(
                         resultSet.getInt("assignment_id"),
                         resultSet.getInt("lecturer_id"),
-                        resultSet.getInt("committee_id")
+                        resultSet.getInt("council_id")
                 ));
             }
         } catch (SQLException e) {
@@ -38,7 +38,7 @@ public class LecturerAssignmentDAO {
                     return new LecturerAssignment(
                             resultSet.getInt("assignment_id"),
                             resultSet.getInt("lecturer_id"),
-                            resultSet.getInt("committee_id")
+                            resultSet.getInt("council_id")
                     );
                 }
             }
@@ -49,14 +49,14 @@ public class LecturerAssignmentDAO {
     }
 
     public void addAssignment(LecturerAssignment assignment) {
-        String query = "INSERT INTO Lecturer_Assignments (lecturer_id, committee_id) VALUES (?, ?)";
+        String query = "INSERT INTO Lecturer_Assignments (lecturer_id, council_id) VALUES (?, ?)";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, assignment.getLecturerId());
-            statement.setInt(2, assignment.getCommitteeId());
+            statement.setInt(2, assignment.getCouncilId());
             statement.executeUpdate();
 
-            // Lấy assignment_id tự động tạo
+        
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     assignment.setAssignmentId(generatedKeys.getInt(1));
@@ -68,11 +68,11 @@ public class LecturerAssignmentDAO {
     }
 
     public void updateAssignment(LecturerAssignment assignment) {
-        String query = "UPDATE Lecturer_Assignments SET lecturer_id = ?, committee_id = ? WHERE assignment_id = ?";
+        String query = "UPDATE Lecturer_Assignments SET lecturer_id = ?, council_id = ? WHERE assignment_id = ?";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, assignment.getLecturerId());
-            statement.setInt(2, assignment.getCommitteeId());
+            statement.setInt(2, assignment.getCouncilId());
             statement.setInt(3, assignment.getAssignmentId());
             statement.executeUpdate();
         } catch (SQLException e) {

@@ -445,27 +445,27 @@
 }
 /* Tùy chỉnh cho nút */
 .btn-warning {
-    background-color: var(--primary); /* Thay đổi màu nền */
-    border-color: var(--primary); /* Thay đổi màu viền */
-    color: #fff; /* Thay đổi màu chữ thành trắng để dễ nhìn */
+    background-color: var(--primary); 
+    border-color: var(--primary);
+    color: #fff; 
     transition: background-color 0.3s ease;
 }
 
 .btn-warning:hover {
-    background-color: #0599b3; /* Màu xanh đậm hơn khi hover */
+    background-color: #0599b3; 
     border-color: #0599b3;
     color: #fff;
 }
 
 .btn-danger {
-    background-color: var(--primary); /* Thay đổi màu nền */
-    border-color: var(--primary); /* Thay đổi màu viền */
-    color: #fff; /* Thay đổi màu chữ thành trắng */
+    background-color: var(--primary);
+    border-color: var(--primary); 
+    color: #fff; 
     transition: background-color 0.3s ease;
 }
 
 .btn-danger:hover {
-    background-color: #0599b3; /* Màu xanh đậm hơn khi hover */
+    background-color: #0599b3;
     border-color: #0599b3;
     color: #fff;
 }

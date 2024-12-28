@@ -1,27 +1,44 @@
 package model;
+
 public class Student {
     private int studentId;
+    private int userId;
     private String fullName;
     private int year;
     private String major;
-    private String StudentClass;
+    private String studentClass;
+    private String email;
+    private String phone;
 
-    public Student(int studentId, String fullName, int year, String major, String studentClass) {
-    this.studentId = studentId;
-    this.fullName = fullName;
-    this.year = year;
-    this.major = major;
-    this.StudentClass = studentClass;
-}
+    public Student() {
+    }
 
+    public Student(int studentId, int userId, String fullName, int year, String major, String studentClass, String email, String phone) {
+        this.studentId = studentId;
+        this.userId = userId;
+        this.fullName = fullName;
+        this.year = year;
+        this.major = major;
+        this.studentClass = studentClass;
+        this.email = email;
+        this.phone = phone;
+    }
 
-    // Getter và Setter đầy đủ
+    // Getters and Setters
     public int getStudentId() {
         return studentId;
     }
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
+    }
+    
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getFullName() {
@@ -49,10 +66,26 @@ public class Student {
     }
 
     public String getStudentClass() {
-        return StudentClass;
+        return studentClass;
     }
 
     public void setStudentClass(String studentClass) {
-        this.StudentClass = studentClass;
+        this.studentClass = studentClass;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
